@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gasparetti Matthew | Macintosh Plus Emulator</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/pce-ui.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/pce-ui-macplus.css" />
+    <style>
+        .emscripten {
+            cursor: none;
+        }
+        
+        body.touch .hide-on-mobile {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="titlebar">
+        <h1>
+            Macintosh Plus Emulator running Mac OS System 7 &mdash; a hack by
+            <a href="https://jamesfriend.com.au/">James Friend</a>
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="emscripten" id="status">Downloading...</div>
+        <div class="emscripten">
+            <progress value="0" max="100" id="progress" hidden="1"></progress>
+        </div>
+        <div class="emscripten_border">
+            <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+        </div>
+        <div class="emscripten" id="fullscreencontrols">
+            <input type="checkbox" id="resize" />Resize canvas
+            <input type="checkbox" id="pointerLock" checked />Lock/hide mouse pointer &nbsp;&nbsp;&nbsp;
+            <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked,document.getElementById('resize').checked)" />
+        </div>
+        <textarea class="emscripten" id="output" rows="8"></textarea>
+        <audio id="macstartup" src="assets/sounds/macstartup.wav" preload="auto"></audio>
+    </div>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-23661560-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src =
+                ('https:' == document.location.protocol ?
+                    'https://ssl' :
+                    'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript" src="assets/js/rAF.js"></script>
+    <script type="text/javascript">
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch');
+        }
+    </script>
+    <script type="text/javascript" src="assets/js/pce-ui.js"></script>
+    <script type="text/javascript" src="assets/js/pce-macplus.js"></script>
+    <script type="text/javascript" src="assets/js/pcejs-mobile-support.js"></script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        (function(d, s, a, i, j, r, l, m, t) {
+            try {
+                l = d.getElementsByTagName('a');
+                t = d.createElement('textarea');
+                for (i = 0; l.length - i; i++) {
+                    try {
+                        a = l[i].href;
+                        s = a.indexOf('/cdn-cgi/l/email-protection');
+                        m = a.length;
+                        if (a && s > -1 && m > 28) {
+                            j = 28 + s;
+                            s = '';
+                            if (j < m) {
+                                r = ('0x' + a.substr(j, 2)) | 0;
+                                for (j += 2; j < m && a.charAt(j) != 'X'; j += 2)
+                                    s +=
+                                    '%' +
+                                    ('0' + (('0x' + a.substr(j, 2)) ^ r).toString(16)).slice(-2);
+                                j++;
+                                s = decodeURIComponent(s) + a.substr(j, m - j);
+                            }
+                            t.innerHTML = s.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                            l[i].href = 'mailto:' + t.value;
+                        }
+                    } catch (e) {}
+                }
+            } catch (e) {}
+        })(document); /* ]]> */
+    </script>
+</body>
+
+</html>
